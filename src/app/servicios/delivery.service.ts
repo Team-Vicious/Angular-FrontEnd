@@ -22,7 +22,7 @@ export class DeliveryService {
     console.log(this.platosData);
   }
 
-  public getPlatoXId(idx:string):any{
+  public getPlatoXId(idx:number):any{
       for(let plato of this.platosData){
           if(plato.id == idx){
             return plato;
@@ -52,7 +52,7 @@ export class DeliveryService {
   platoAdminUrl:string = "http://localhost:9000/api/v1/angular/1";
   newPlato( platoNuevo: Plato) {
     return this.http.post<Plato>( this.platoAdminUrl, null, {params: new HttpParams().set("action", "insertar").set("id", "0")
-    .set("nombre", platoNuevo.nombre).set("imagenPath", platoNuevo.imagenPath).set("precio", platoNuevo.precio).set("rubro", platoNuevo.rubro)
+    .set("nombre", platoNuevo.nombre).set("imagenPath", platoNuevo.imagenPath).set("precio", platoNuevo.precio.toString()).set("rubro", platoNuevo.rubro)
     }).pipe(map( nuevoPlato => {
             console.log(nuevoPlato.nombre);
             return nuevoPlato;
@@ -63,8 +63,8 @@ export class DeliveryService {
 
   //.set("imagenPath", platoUpdate.imagenPath)
    updatePlato( platoUpdate: Plato) {
-      return this.http.post<Plato>( this.platoAdminUrl, null, {params: new HttpParams().set("action", "actualizar").set("id", platoUpdate.id)
-      .set("nombre", platoUpdate.nombre).set("imagenPath", platoUpdate.imagenPath).set("precio", platoUpdate.precio).set("rubro", platoUpdate.rubro)
+      return this.http.post<Plato>( this.platoAdminUrl, null, {params: new HttpParams().set("action", "actualizar").set("id", platoUpdate.id.toString())
+      .set("nombre", platoUpdate.nombre).set("imagenPath", platoUpdate.imagenPath).set("precio", platoUpdate.precio.toString()).set("rubro", platoUpdate.rubro)
       }).pipe(map( res => {
               console.log(res.nombre);
               return res;

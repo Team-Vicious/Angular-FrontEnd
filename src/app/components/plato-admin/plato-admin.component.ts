@@ -13,9 +13,9 @@ export class PlatoAdminComponent implements OnInit {
 
 
   plato:Plato = {
-    id: "0",
+    id: 0,
     nombre:"",
-    precio: "",
+    precio: 0,
     rubro:"",
     imagenPath:"",
     ingredientes:[]
@@ -88,8 +88,8 @@ export class PlatoAdminComponent implements OnInit {
     });
   }
 
-  validarSiNumero(numero:string):boolean{
-    if(!/^([0-9])*$/.test(numero)) 
+  validarSiNumero(numero:number):boolean{
+    if(!/^([0-9])*$/.test(numero.toString())) 
         return false;
     return true;
     
