@@ -48,22 +48,42 @@ export class DeliveryService {
       map( platosSearch => platosSearch));
   }
 
-  //.set("imagenPath", platoNuevo.imagenPath)
-  platoAdminUrl:string = "http://localhost:9000/api/v1/angular/1";
+
+
+  platoAdminUrl:string = "http://localhost:9000/api/v1/angular/";
+  //array
+  //ingre:string[];
+  ingre = ["masa","queso"]; 
+  
+  //ingre = "masa";
+
+  /*
+  //.set("imagenPath", platoNuevo.imagenPath)-----.set("id", "0")------JSON.stringify(Plato)
+  
   newPlato( platoNuevo: Plato) {
     return this.http.post<Plato>( this.platoAdminUrl, null, {params: new HttpParams().set("action", "insertar").set("id", "0")
-    .set("nombre", platoNuevo.nombre).set("imagenPath", platoNuevo.imagenPath).set("precio", platoNuevo.precio.toString()).set("rubro", platoNuevo.rubro)
+    .set("nombre", platoNuevo.nombre.toString()).set("precio", platoNuevo.precio.toString()).set("rubro", platoNuevo.rubro.toString()).set("pathImagen", platoNuevo.imagenPath.toString())
     }).pipe(map( nuevoPlato => {
             console.log(nuevoPlato.nombre);
             return nuevoPlato;
           }));
   }
+  */
 
+ newPlato( platoNuevo: Plato) {
+  const headers = { 'content-type': 'application/json'} 
+  const body=JSON.stringify(platoNuevo);
+
+  return this.http.post<Plato>( this.platoAdminUrl, body,{'headers':headers}).pipe(map( nuevoPlato => {
+          //console.log(nuevoPlato.nombre);
+          return nuevoPlato;
+        }));
+}
 
 
   //.set("imagenPath", platoUpdate.imagenPath)
    updatePlato( platoUpdate: Plato) {
-      return this.http.post<Plato>( this.platoAdminUrl, null, {params: new HttpParams().set("action", "actualizar").set("id", platoUpdate.id.toString())
+      return this.http.post<Plato>( this.platoAdminUrl, JSON.stringify(Plato), {params: new HttpParams().set("action", "actualizar").set("id", platoUpdate.id.toString())
       .set("nombre", platoUpdate.nombre).set("imagenPath", platoUpdate.imagenPath).set("precio", platoUpdate.precio.toString()).set("rubro", platoUpdate.rubro)
       }).pipe(map( res => {
               console.log(res.nombre);
