@@ -80,7 +80,7 @@ export class DeliveryService {
         }));
 }
 
-
+  /*
   //.set("imagenPath", platoUpdate.imagenPath)
    updatePlato( platoUpdate: Plato) {
       return this.http.post<Plato>( this.platoAdminUrl, JSON.stringify(Plato), {params: new HttpParams().set("action", "actualizar").set("id", platoUpdate.id.toString())
@@ -90,9 +90,19 @@ export class DeliveryService {
               return res;
             }));
     }
+    */
+
+   updatePlato( platoUpdate: Plato) {
+    const headers = { 'content-type': 'application/json'} 
+    const body=JSON.stringify(platoUpdate);
+    return this.http.put<Plato>( this.platoAdminUrl+platoUpdate.id, body,{'headers':headers} ).pipe(map( res => {
+            console.log(res.nombre);
+            return res;
+          }));
+  }
 
     deletePlato(idPlato: string){
-      return this.http.post( this.platoAdminUrl, null, {params: new HttpParams().set("action", "eliminar").set("id", idPlato)})
+      return this.http.delete( this.platoAdminUrl+idPlato)
             .pipe(
             map( res => {
               console.log(res);
