@@ -18,7 +18,7 @@ export class PlatoAdminComponent implements OnInit {
     precio: 0,
     rubro:"",
     imagenPath:"",
-    ingredientes:[]
+    ingrediente:[]
   };
   new = false;
   idplato: string;

@@ -13,8 +13,8 @@
         <p><b>Precio:</b> ${{plato.precio}}</p>
         <p><b>Rubro:</b> {{plato.rubro}}</p>
         <p><b>Ingredientes:</b>
-            <li *ngFor="let ingredienteAux of plato.ingredientes; let i = index">
-                {{ ingredienteAux.nombre }} {{ ingredienteAux.cantidad }} {{ ingredienteAux.unidadMedida }}
+            <li *ngFor="let ingredienteAux of plato.ingrediente; let i = index">
+                {{ ingredienteAux}}
             </li> 
         </p>
         <div>

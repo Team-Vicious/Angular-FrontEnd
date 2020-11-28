@@ -5,5 +5,5 @@ export class Plato {
     precio: number;
     rubro: string;
     imagenPath: string;
-    ingredientes: [];
+    ingrediente: string[];
 }
